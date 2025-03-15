@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ogni_0%$ugoim30f2f+
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '13.54.138.163').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'eshiroflex.zapto.org').split(',')
 
 
 # Installed apps
@@ -143,11 +143,11 @@ CORS_ALLOWED_ORIGINS = [
     "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
     "http://localhost:5173",  # Change based on frontend URL
     "http://127.0.0.1:5173",
-    "http://13.54.138.163"
+    "http://eshiroflex.zapto.org"
 ]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "http://13.54.138.163"
+    "http://eshiroflex.zapto.org"
 ]
