@@ -11,7 +11,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ogni_0%$ugoim30f2f+
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('13.54.138.163', 'DJANGO_ALLOWED_HOSTS').split()
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '13.54.138.163,localhost,127.0.0.1').split(',')
+
 
 # Installed apps
 INSTALLED_APPS = [
@@ -143,8 +144,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     # "https://yourfrontenddomain.com" ("https://myapp.vercel.app"  # Your actual frontend domain)
 ]
-
-
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
