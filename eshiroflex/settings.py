@@ -139,7 +139,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # CORS (For frontend connection)
 CORS_ALLOWED_ORIGINS = [
-    "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
+    # "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
     "http://localhost:5173",  # Change based on frontend URL
     "http://127.0.0.1:5173",
     # "https://yourfrontenddomain.com" ("https://myapp.vercel.app"  # Your actual frontend domain)
