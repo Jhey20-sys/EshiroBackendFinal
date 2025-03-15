@@ -69,17 +69,20 @@ TEMPLATES = [
 # WSGI Application
 WSGI_APPLICATION = 'eshiroflex.wsgi.application'
 
-# Database Configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'my_database'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', '12345'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': os.getenv('DB_NAME', 'neondb'),  # Database name from Neon
+        'USER': os.getenv('DB_USER', 'neondb_owner'),  # User from Neon
+        'PASSWORD': os.getenv('DB_PASSWORD', 'npg_0Xxb1VYBUZWK'),  # Extracted password
+        'HOST': os.getenv('DB_HOST', 'ep-late-lab-a5o3tzn2-pooler.us-east-2.aws.neon.tech'),  # Host from Neon
+        'PORT': os.getenv('DB_PORT', '5432'),  # Default PostgreSQL port
+        'OPTIONS': {
+            'sslmode': 'require',  # Ensures secure connection
+        },
     }
 }
+
 
 # Authentication
 AUTH_USER_MODEL = 'store.User'
