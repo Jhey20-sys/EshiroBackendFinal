@@ -144,13 +144,13 @@ CORS_ALLOW_CREDENTIALS = True
 # CORS (For frontend connection)
 CORS_ALLOWED_ORIGINS = [
     "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
-    "http://localhost:5173",  # Change based on frontend URL
-    "http://127.0.0.1:5173",
-    "http://eshiroflex.zapto.org"
+    "https://localhost:5173",  # Change based on frontend URL
+    "https://127.0.0.1:5173",
+    "https://eshiroflex.zapto.org"
 ]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://eshiroflex.zapto.org"
+    "https://localhost:3000",
+    "https://eshiroflex.zapto.org"
 ]
