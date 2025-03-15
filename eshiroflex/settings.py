@@ -11,8 +11,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-ogni_0%$ugoim30f2f+
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'eshiroflex.zapto.org').split(',')
-
+ALLOWED_HOSTS = [
+    "eshiroflex.zapto.org",
+    "127.0.0.1",
+    "localhost",
+]
 
 # Installed apps
 INSTALLED_APPS = [
