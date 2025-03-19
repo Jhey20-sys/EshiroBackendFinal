@@ -12,7 +12,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "eshiroflex.zapto.org",
+    "eshirobackendfinal.onrender.com",
     "127.0.0.1",
     "localhost",
 ]
@@ -146,11 +146,11 @@ CORS_ALLOWED_ORIGINS = [
     "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
     "https://localhost:5173",  # Change based on frontend URL
     "https://127.0.0.1:5173",
-    "https://eshiroflex.zapto.org"
+    "https://eshirobackendfinal.onrender.com"
 ]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:3000",
-    "https://eshiroflex.zapto.org"
+    "https://eshirobackendfinal.onrender.com"
 ]
