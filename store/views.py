@@ -190,13 +190,6 @@ class LoginView(ObtainAuthToken):
         })
 
 # Profile & Logout
-class ProfileView(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        return self.request.user
 class ProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
