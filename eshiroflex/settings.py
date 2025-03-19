@@ -146,7 +146,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # CORS (For frontend connection)
 CORS_ALLOWED_ORIGINS = [
-    "https://eshiroflex-git-eshiroflex-ericamonacillos-projects.vercel.app",
+    "https://eshiro-frontend-final.vercel.app",
     "https://localhost:5173",  # Change based on frontend URL
     "https://127.0.0.1:5173",
     "https://eshirobackendfinal.onrender.com"
