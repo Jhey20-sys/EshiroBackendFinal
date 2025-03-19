@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     complete_address = models.TextField(blank=True, null=True)
     cellphone_number = models.CharField(max_length=15, unique=True, blank=True, null=True)
     image_url = models.URLField(max_length=200, blank=True, null=True)
-    
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -51,6 +51,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name', 'cellphone_number', 'complete_address']
+
+    def save(self, *args, **kwargs):
+        """ Ensure that the Profile model updates whenever User is updated """
+        super().save(*args, **kwargs)  # Save User first
+        if hasattr(self, 'profile'):  # If profile exists, update it
+            self.profile.email = self.email
+            self.profile.full_name = self.full_name
+            self.profile.complete_address = self.complete_address
+            self.profile.cellphone_number = self.cellphone_number
+            self.profile.save()
 
     def __str__(self):
         return self.email
