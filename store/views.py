@@ -252,6 +252,19 @@ class CartViewSet(viewsets.ModelViewSet):
         cart_item.delete()
         return Response({"message": "Product removed from cart"}, status=status.HTTP_204_NO_CONTENT)
 
+    def update(self, request, *args, **kwargs):
+        """Update the quantity of an item in the cart."""
+        cart_item = get_object_or_404(Cart, user=request.user, id=kwargs["pk"])
+        new_quantity = request.data.get("quantity")
+
+        if not isinstance(new_quantity, int) or new_quantity <= 0:
+            return Response({"error": "Quantity must be a positive integer"}, status=status.HTTP_400_BAD_REQUEST)
+
+        cart_item.quantity = new_quantity
+        cart_item.save()
+        
+        return Response({"message": "Cart item updated successfully", "quantity": cart_item.quantity}, status=status.HTTP_200_OK)
+
 # Cart View (Fetch all items in the cart)
 class CartView(APIView):
     authentication_classes = [TokenAuthentication]
