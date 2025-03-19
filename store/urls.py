@@ -16,7 +16,7 @@ router = DefaultRouter()
 router.register(r'products', ProductViewSet, basename='product')
 router.register(r'users', UserViewSet, basename='users')
 router.register(r'orders', OrderViewSet, basename='order')
-router.register(r'cart', CartViewSet, basename='cart')  
+# router.register(r'cart', CartViewSet, basename='cart')  
 router.register(r'wishlist', WishlistViewSet, basename='wishlist')
 
 
