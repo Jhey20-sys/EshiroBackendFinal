@@ -32,7 +32,7 @@ urlpatterns = [
     
     # User Profile
     path('profile/', ProfileView.as_view(), name='profile'),
-    path("api/user/<int:id>/", UserDetailView.as_view(), name="user-detail"),
+    path("user/<int:id>/", UserDetailView.as_view(), name="user-detail"),
 
 
     # Payments
@@ -47,11 +47,11 @@ urlpatterns = [
     path('place-order/', PlaceOrderView.as_view(), name='place-order'),
 
     # Order Items
-    path('api/order-items/create/', CreateOrderItemView.as_view(), name="order-item-create"),  # For creating order items
+    path('order-items/create/', CreateOrderItemView.as_view(), name="order-item-create"),  # For creating order items
     path('get-order-items/', get_order_items, name='get_order_items'),  # For fetching order items
     path('order-items/', OrderItemListView.as_view(), name='order-items-list'),
     path('order-items/<int:order_id>/', views.get_order_items, name='get-order-items'),
-    path('api/order-items/<int:order_id>/', get_order_items, name='get_order_items'),
+    path('order-items/<int:order_id>/', get_order_items, name='get_order_items'),
 
     # Cart management
     path('cart/', CartView.as_view(), name='cart-view'),
