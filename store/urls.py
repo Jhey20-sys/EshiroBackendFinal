@@ -54,7 +54,7 @@ urlpatterns = [
     path('order-items/<int:order_id>/', get_order_items, name='get_order_items'),
 
     # Cart management
-    # path('cart/', CartView.as_view(), name='cart-view'),
+    path('cart/', CartView.as_view(), name='cart-view'),
     path('cart/add/', CartAddView.as_view(), name='cart-add'),
     path('carts/clear/', CartClearView.as_view(), name='cart-clear'),
 
