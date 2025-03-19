@@ -195,16 +195,26 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
-        """Retrieve the profile of the authenticated user"""
-        return self.request.user.profile  # This should return the Profile instance
+        """Ensure a profile exists before returning"""
+        profile, created = Profile.objects.get_or_create(user=self.request.user)
+        return profile
 
     def put(self, request, *args, **kwargs):
-        """Handle updating user profile"""
-        profile = self.get_object()  # Directly retrieve Profile instance
+        """Handle updating user profile and user fields"""
+        profile = self.get_object()
+        user = profile.user  # Get the related User object
 
         serializer = self.get_serializer(profile, data=request.data, partial=True)  # Allow partial updates
         if serializer.is_valid():
             serializer.save()
+
+            # Update User fields if provided in the request
+            user_fields = ["full_name", "complete_address", "cellphone_number"]
+            for field in user_fields:
+                if field in request.data:
+                    setattr(user, field, request.data[field])
+            user.save()
+
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

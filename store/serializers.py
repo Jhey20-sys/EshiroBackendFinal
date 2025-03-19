@@ -12,17 +12,32 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'full_name', 'cellphone_number', 'complete_address']
 
 class ProfileSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(source="user.email", read_only=True)
+    full_name = serializers.CharField(source="user.full_name", required=False)
+    complete_address = serializers.CharField(source="user.complete_address", required=False)
+    cellphone_number = serializers.CharField(source="user.cellphone_number", required=False)
 
     class Meta:
         model = Profile
-        fields = ['id', 'email', 'full_name', 'cellphone_number', 'complete_address', 'payment_method']
+        fields = ["email", "full_name", "complete_address", "cellphone_number", "payment_method"]
 
     def update(self, instance, validated_data):
-        # Dynamically update fields if present in request
+        """Ensure both User and Profile are updated"""
+        user_data = validated_data.pop("user", {})  # Extract nested user fields
+
+        # Update Profile fields
         for attr, value in validated_data.items():
-            setattr(instance, attr, value)  
+            setattr(instance, attr, value)
         instance.save()
+
+        # Update User fields if provided
+        user = instance.user
+        for attr, value in user_data.items():
+            setattr(user, attr, value)
+        user.save()
+
         return instance
+    
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
