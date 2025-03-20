@@ -156,4 +156,4 @@ class OrderHistorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Order
-        fields = ['id', 'total_price', 'status', 'created_at', 'updated_at', 'items', 'payment_info']
+        fields = ['id', 'total_price', 'status', 'created_at', 'created_at', 'items', 'payment_info']
