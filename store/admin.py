@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, User, Order, Cart, Wishlist, Payment, Profile  
+from .models import Product, User, Order, Cart, Wishlist, Payment, Profile, OrderItem
 
 class OrderAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
@@ -14,3 +14,4 @@ admin.site.register(Cart)
 admin.site.register(Wishlist)
 admin.site.register(Payment)
 admin.site.register(Profile)
+admin.site.register(OrderItem)
