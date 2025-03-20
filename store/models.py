@@ -138,6 +138,16 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Store price per unit
 
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('processing', 'Processing'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Cancelled')
+    ]
+
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def save(self, *args, **kwargs):
         """Ensure price per unit is set before saving."""
         if not self.price and self.product:

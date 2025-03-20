@@ -7,7 +7,7 @@ from .views import (
     CartViewSet, CartView, CartAddView, WishlistViewSet, PaymentViewSet, 
     UserViewSet, ProfileView, LoginView, OrderCreateView, 
     OrderDetailView, PlaceOrderView, CreateOrderAPIView, CartClearView,
-    ProductView, get_order_items, OrderItemListView, CreateOrderItemView, UserDetailView,search_products, product_detail_by_name
+    ProductView, get_order_items, OrderItemListView, CreateOrderItemView, UserDetailView,search_products, product_detail_by_name, OrderHistoryView
 )
 from . import views
 
@@ -62,4 +62,7 @@ urlpatterns = [
     path('products/', ProductView.as_view(), name='product-list'),
     path("search/", search_products, name="search_products"),  # Search API
     path("products/name/<str:product_name>/", product_detail_by_name, name="product_detail_by_name"),  # Search by product name
+
+    # Transaction
+    path('order-history/', OrderHistoryView.as_view(), name='order-history'),
 ]

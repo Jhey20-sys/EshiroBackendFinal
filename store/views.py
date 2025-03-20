@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import Product, Order, Profile, Cart, Wishlist, Payment
-from .serializers import (ProductSerializer, UserSerializer, RegisterSerializer, OrderSerializer, CartSerializer, WishlistSerializer, PaymentSerializer, OrderItemSerializer, ProfileSerializer)
+from .serializers import (ProductSerializer, UserSerializer, RegisterSerializer, OrderSerializer, CartSerializer, WishlistSerializer, PaymentSerializer, OrderItemSerializer, ProfileSerializer, OrderHistorySerializer)
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework.authentication import TokenAuthentication
@@ -767,3 +767,12 @@ def product_detail_by_name(request, product_name):
         "description": product.description,
         "price": product.price,
     })
+
+
+# Transactional API View
+class OrderHistoryView(generics.ListAPIView):
+    serializer_class = OrderHistorySerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')

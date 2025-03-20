@@ -134,4 +134,26 @@ class OrderSerializer(serializers.ModelSerializer):
         # Create order with user and total price from frontend
         order = Order.objects.create(user=user, total_price=total_price)
         return order
+
+
+# ORDER HISTORY
+class OrderItemHistorySerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    product_image = serializers.URLField(source='product.image_url', read_only=True)
     
+    class Meta:
+        model = OrderItem
+        fields = ['product_name', 'product_image', 'quantity', 'price']
+
+class PaymentHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = ['mode_of_payment', 'status', 'created_at']
+
+class OrderHistorySerializer(serializers.ModelSerializer):
+    items = OrderItemHistorySerializer(source='order_items', many=True, read_only=True)
+    payment_info = PaymentHistorySerializer(source='payments', many=True, read_only=True)
+    
+    class Meta:
+        model = Order
+        fields = ['id', 'total_price', 'status', 'created_at', 'updated_at', 'items', 'payment_info']
