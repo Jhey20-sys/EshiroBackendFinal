@@ -73,7 +73,7 @@ class Profile(models.Model):
     reset_password_token_expiry = models.DateTimeField(blank=True, null=True)
     email = models.EmailField(unique=True, blank = True, null = True)
     full_name = models.CharField(max_length=255, blank=True, null=True)
-    complete_address = models.TextField(blank=True)
+    complete_address = models.TextField(blank=True, null=True)
     cellphone_number = models.CharField(max_length=15, unique=True, null=True, blank=True)
     payment_method = models.CharField(max_length=50, blank=True)
     def __str__(self):
