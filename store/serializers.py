@@ -12,10 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'full_name', 'cellphone_number', 'complete_address']
 
 class ProfileSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(source="user.email", read_only=True)
-    full_name = serializers.CharField(source="user.full_name", required=False)
-    complete_address = serializers.CharField(source="user.complete_address", required=False)
-    cellphone_number = serializers.CharField(source="user.cellphone_number", required=False)
+    email = serializers.EmailField(source="user.email", read_only=True, required=False)
+    full_name = serializers.CharField(source="user.full_name", required=False, allow_null=True)
+    complete_address = serializers.CharField(source="user.complete_address", required=False, allow_null=True)
+    cellphone_number = serializers.CharField(source="user.cellphone_number", required=False, allow_null=True)
 
     class Meta:
         model = Profile

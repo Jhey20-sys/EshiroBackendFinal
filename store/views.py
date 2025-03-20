@@ -196,8 +196,13 @@ class ProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         """Ensure a profile exists before returning"""
-        profile, created = Profile.objects.get_or_create(user=self.request.user)
-        return profile
+        try:
+            profile, created = Profile.objects.get_or_create(user=self.request.user)
+            return profile
+        except Exception as e:
+            print(f"Profile creation error: {str(e)}")
+            # You might want to log this properly
+            raise
 
     def put(self, request, *args, **kwargs):
         """Handle updating user profile and user fields"""
