@@ -129,6 +129,7 @@ class Order(models.Model):
     ]
     
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         # Ensure that total_price is set from the frontend when creating the order
@@ -146,7 +147,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Store price per unit
-    updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         """Ensure price per unit is set before saving."""
