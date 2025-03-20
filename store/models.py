@@ -190,5 +190,9 @@ class Payment(models.Model):
     mode_of_payment = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(default=now)
 
+    @property
+    def mode_of_payment(self):
+        return self.user.profile.payment_method if self.user.profile else None
+
     def __str__(self):
         return f"Payment {self.id} - {self.status} ({self.amount})"
